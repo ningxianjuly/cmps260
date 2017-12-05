@@ -84,9 +84,9 @@
 
 			var params = new function () {
 			    this.test = "on",
-                this.diffuse = "on",
-                this.specular = "on",
-			    this.normal = "on",
+                this.diffuse = "off",
+                this.specular = "off",
+		this.normal = "off",
                 this.specular_brightness = 0.8,
                 this.roughness = 0.2,
                 this.control = "off"
@@ -103,7 +103,15 @@
 			init();
 			var gui = new dat.GUI();
 			gui.add(params, 'test', ['on', 'off']);
-			
+			var diffuse1_change = gui.add(params, 'diffuse', ['on', 'off']);
+			diffuse1_change.onChange(function (value) {
+			    if (value == "on") {
+			        uniforms["tDiffuse"].value = mapColor;
+
+			    } else {
+			        uniforms["tDiffuse"].value = null;
+			    }
+			});
 			var spe_change = gui.add(params, 'specular', ['on', 'off']);
 			spe_change.onChange(function (value) {
 			    if (value == "on") {
@@ -122,15 +130,7 @@
 			        uniforms["bumpMap"].value = null;
 			    }
 			});
-			var diffuse1_change = gui.add(params, 'diffuse', ['on', 'off']);
-			diffuse1_change.onChange(function (value) {
-			    if (value == "on") {
-			        uniforms["tDiffuse"].value = mapColor;
-
-			    } else {
-			        uniforms["tDiffuse"].value = null;
-			    }
-			});
+			
 			var bright_change = gui.add(params, 'specular_brightness', 0, 1);
 			bright_change.onChange(function (value) {
 			    uniforms["uSpecularBrightness"].value = value;
