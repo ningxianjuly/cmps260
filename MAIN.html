@@ -84,9 +84,9 @@
 
 			var params = new function () {
 			    this.test = "on",
-                this.diffuse = "off",
-                this.specular = "off",
-		this.normal = "off",
+                this.diffuse = "on",
+                this.specular = "on",
+		this.normal = "on",
                 this.specular_brightness = 0.8,
                 this.roughness = 0.2,
                 this.control = "off"
@@ -284,10 +284,10 @@
 				uniforms["enableSpecular"].value = true;
 
 				uniforms[ "tBeckmann" ].value = composerBeckmann.renderTarget1.texture;
-				uniforms[ "tDiffuse" ].value = mapColor;
+				uniforms[ "tDiffuse" ].value = null;
 
-				uniforms[ "bumpMap" ].value = mapHeight;
-				uniforms[ "specularMap" ].value = mapSpecular;
+				uniforms[ "bumpMap" ].value = null;
+				uniforms[ "specularMap" ].value = null;
 
 				uniforms[ "diffuse" ].value.setHex( 0xa0a0a0 );
 				uniforms[ "specular" ].value.setHex( 0xa0a0a0 );
